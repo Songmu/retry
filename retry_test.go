@@ -11,7 +11,7 @@ func TestRetrySuccess(t *testing.T) {
 	err := Retry(3, 1*time.Nanosecond, func() error {
 		if cnt == 0 {
 			cnt++
-			return fmt.Errorf("retry!")
+			return fmt.Errorf("retry")
 		}
 		return nil
 	})
@@ -29,10 +29,10 @@ func TestRetryFail(t *testing.T) {
 	cnt := 0
 	err := Retry(4, 1*time.Nanosecond, func() error {
 		cnt++
-		return fmt.Errorf("retry!")
+		return fmt.Errorf("retry")
 	})
 
-	if err == nil || err.Error() != "retry!" {
+	if err == nil || err.Error() != "retry" {
 		t.Errorf("error should be occured")
 	}
 
