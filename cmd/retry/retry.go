@@ -36,12 +36,15 @@ func run(args []string) int {
 
 func writeHelp() {
 	fmt.Fprint(os.Stderr, `Usage:
-    % retry COUNT [INTERVAL] COMMAND [ARG]...
+    $ retry COUNT [INTERVAL] COMMAND [ARG]...
 
 Start COMMAND, and retry it until success up to COUNT with INTERVAL seconds.
 
     COUNT: max retry count
     INTERVAL: interval seconds (default 1.0)
+
+Example:
+    $ retry 3 check-hoge ...
 `)
 }
 
