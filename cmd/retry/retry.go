@@ -75,6 +75,7 @@ func (o *opts) run() error {
 		cmd := exec.Command(o.cmd[0], o.cmd[1:]...)
 		cmd.Stdout = os.Stdout
 		cmd.Stderr = os.Stderr
+		cmd.Stdin = os.Stdin
 		err := cmd.Run()
 		if !wrapcommander.IsInvoked(err) {
 			fmt.Fprintln(os.Stderr, err)
