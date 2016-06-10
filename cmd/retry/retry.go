@@ -11,6 +11,8 @@ import (
 	"github.com/Songmu/wrapcommander"
 )
 
+const version = "0.0.1"
+
 type opts struct {
 	retry    uint
 	interval float64
@@ -35,7 +37,7 @@ func run(args []string) int {
 }
 
 func writeHelp() {
-	fmt.Fprint(os.Stderr, `Usage:
+	fmt.Fprintf(os.Stderr, `Usage:
     $ retry COUNT [INTERVAL] COMMAND [ARG]...
 
 Start COMMAND, and retry it until success up to COUNT with INTERVAL seconds.
@@ -45,7 +47,9 @@ Start COMMAND, and retry it until success up to COUNT with INTERVAL seconds.
 
 Example:
     $ retry 3 check-hoge ...
-`)
+
+Version: %s
+`, version)
 }
 
 func parseArgs(args []string) (*opts, error) {
