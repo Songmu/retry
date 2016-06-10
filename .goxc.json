@@ -7,7 +7,7 @@
 		"copy-resources",
 		"deb"
 	],
-	"Arch": "amd64",
+	"Arch": "amd64 386",
 	"Os": "linux darwin freebsd",
 	"ConfigVersion": "0.9"
 }
