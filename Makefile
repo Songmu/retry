@@ -29,7 +29,7 @@ bump:
 
 crossbuild: devel-deps
 	$(eval ver = $(shell cd cmd/retry && gobump show -r))
-	goxz -pv=v$(ver) -d=./dist ./cmd/retry
+	goxz -pv=v$(ver) -d=./dist/v$(ver) ./cmd/retry
 
 upload:
 	ghr v$(VERSION) dist/v$(VERSION)
