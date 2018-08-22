@@ -19,8 +19,8 @@ func Retry(n uint, interval time.Duration, fn func() error) (err error) {
 	return err
 }
 
-// RetryWithContext stops retrying when the context is done.
-func RetryWithContext(ctx context.Context, n uint, interval time.Duration, fn func() error) (err error) {
+// WithContext stops retrying when the context is done.
+func WithContext(ctx context.Context, n uint, interval time.Duration, fn func() error) (err error) {
 	for n > 0 {
 		n--
 		err = fn()
