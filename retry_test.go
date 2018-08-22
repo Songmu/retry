@@ -1,6 +1,7 @@
 package retry
 
 import (
+	"context"
 	"fmt"
 	"testing"
 	"time"
@@ -38,5 +39,22 @@ func TestRetryFail(t *testing.T) {
 
 	if cnt != 4 {
 		t.Errorf("cnt should be 4, but %d", cnt)
+	}
+}
+
+func TestRetryWithContext(t *testing.T) {
+	cnt := 0
+	ctx, _ := context.WithTimeout(context.Background(), 150*time.Millisecond)
+	err := RetryWithContext(ctx, 3, 100*time.Millisecond, func() error {
+		cnt++
+		return fmt.Errorf("retry")
+	})
+
+	if err != context.DeadlineExceeded {
+		t.Errorf("error should be %s, %s", context.DeadlineExceeded, err)
+	}
+
+	if cnt != 2 {
+		t.Errorf("cnt should be 2, %d", cnt)
 	}
 }
