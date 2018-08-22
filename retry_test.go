@@ -44,7 +44,8 @@ func TestRetryFail(t *testing.T) {
 
 func TestRetryWithContext(t *testing.T) {
 	cnt := 0
-	ctx, _ := context.WithTimeout(context.Background(), 150*time.Millisecond)
+	ctx, cancel := context.WithTimeout(context.Background(), 150*time.Millisecond)
+	defer cancel()
 	err := RetryWithContext(ctx, 3, 100*time.Millisecond, func() error {
 		cnt++
 		return fmt.Errorf("retry")
